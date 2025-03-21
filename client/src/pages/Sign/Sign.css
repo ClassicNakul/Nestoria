@@ -1,0 +1,95 @@
+/* Center the form box */
+.gb{
+  height: 100vh;
+  background: url(/Users/classic_nakul/Projects/Nestoria/client/src/assets/7.jpg);
+  background-size: cover;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+/* Outer box with shadow */
+.box {
+  display: flex;
+  width: 500px;
+  background: url(/Users/classic_nakul/Projects/Nestoria/client/src/assets/6.jpg);
+  background-size: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  /* overflow: hidden; */
+  position: relative;
+}
+
+/* Form container (left panel) */
+.form-container {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Right panel for toggling */
+.toggle-panel {
+  flex: 1;
+  background: #667eea;
+  border-radius: 10px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  transition: transform 0.5s ease-in-out;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+/* Form input fields */
+.input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Submit button */
+.btn {
+  width: 100%;
+  padding: 10px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #5a67d8;
+}
+
+/* Toggle button */
+.toggle-btn {
+  background: white;
+  color: #667eea;
+  padding: 10px 15px;
+  border: 2px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: white;
+  color: #5a67d8;
+} 
