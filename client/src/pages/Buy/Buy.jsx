@@ -310,6 +310,15 @@ const Buy = () => {
                     cursor: 'pointer',
                     fontWeight: 'bold',
                     fontSize: '1rem',
+                    transition: 'all 0.3s ease', // Smooth transition
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.backgroundColor = 'darkgreen'; // Change background color on hover
+                    e.target.style.transform = 'scale(1.05)'; // Slightly enlarge the button
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.backgroundColor = 'green'; // Revert background color
+                    e.target.style.transform = 'scale(1)'; // Reset size
                   }}
                   onClick={() => setSelectedProperty(property)}
                 >
