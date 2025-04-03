@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import Navbar from '../../components/Navbar/Navbar';
 import './Contact.css';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const Contact = () => {
         email: '',
         message: ''
     });
+
+    const navigate = useNavigate(); // Initialize useNavigate
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,11 +21,6 @@ const Contact = () => {
         });
     };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     // Handle form submission logic here
-    //     console.log('Form data submitted:', formData);
-    // };
     const onSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -46,6 +44,8 @@ const Contact = () => {
                 title: "Good job!",
                 text: "Your message has been sent successfully",
                 icon: "success"
+            }).then(() => {
+                navigate('/'); // Redirect to the homepage
             });
         }
     };
@@ -92,7 +92,7 @@ const Contact = () => {
                 </form>
             </div>
         </div>
-        
     );
 };
+
 export default Contact;

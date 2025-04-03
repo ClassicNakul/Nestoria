@@ -12,22 +12,22 @@ const Navbar = () => {
   const navRef = useRef();
   const navigate = useNavigate();
 
-  // Check if user is logged in
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
-  
     if (token) {
       const decodedToken = jwtDecode(token);
       if (decodedToken.exp * 1000 < new Date().getTime()) {
         handleLogout();
       } else {
-        // Safely parse storedUser only if it's not null
-        setUser(storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : decodedToken);
+        const parsedUser = storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : decodedToken;
+        console.log("User:", parsedUser); // Debugging
+        console.log("User:", user);
+        setUser(parsedUser);
       }
     }
   }, []);
-  
+
 
   // Logout function
   const handleLogout = () => {
@@ -46,12 +46,12 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <Link to="/Home">
+        <Link to="/">
           <img src={require("../../assets/logo.png")} alt="Logo" />
         </Link>
       </div>
       <ul className="navbar-links" ref={navRef}>
-        <li><Link to="/Home">Home</Link></li>
+        <li><Link to="/">Home</Link></li>
         <li><Link to="/About">About</Link></li>
         <li
           className="dropdown"
@@ -72,8 +72,8 @@ const Navbar = () => {
           {user ? (
             <>
               <Avatar>
-                <Link to={`/Users/${user.userId}`} style={{ color: "white", textDecoration: "none" }}>
-                {user.name ? user.name.charAt(0).toUpperCase() + user.name.slice(1).toLowerCase():"U"}
+                <Link to={`/Users/${user?.userId || ""}`} style={{ color: "white", textDecoration: "none" }}>
+                  {user?.name ? user.name.charAt(0).toUpperCase() : "N"}
                 </Link>
               </Avatar>
               <button className="nav-item nav-links logout-btn" onClick={handleLogout}>Sign Out</button>

@@ -26,7 +26,7 @@ const Sign = () => {
         alert(isSignUp ? 'Signup Successful' : 'Login Successful');
         if (!isSignUp) {
             localStorage.setItem('token', data.token);
-            navigate("/Home"); // Redirect to Home page
+            navigate("/"); // Redirect to Home page
         }
     } catch (err) {
         alert('Error: ' + (err.response?.data?.message || 'Something went wrong'));
