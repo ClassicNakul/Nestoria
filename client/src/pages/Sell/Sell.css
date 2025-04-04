@@ -1,0 +1,124 @@
+.sell-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.left-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.image-carousel {
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.carousel-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.carousel-image:hover {
+    transform: scale(1.1);
+}
+
+.description-container {
+    text-align: center;
+}
+
+.description-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.description-content {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.right-section {
+    flex: 1;
+}
+
+.sell-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.sell-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 30px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text color */
+    border: 1px solid #000; /* Black border */
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #000; /* Keep black border on focus */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+    outline: none;
+}
+
+.image-preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.image-preview {
+    max-width: 100%;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.image-preview:hover {
+    transform: scale(1.05);
+}
+
+.submit-button {
+    padding: 10px;
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
