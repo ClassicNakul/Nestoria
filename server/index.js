@@ -3,14 +3,44 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 
+const Property = require('./models/property'); // Ensure this file exists and is correctly implemented
+
 const app = express();
-app.use(express.json());
+const PORT = 4000;
+
+// Ensure the 'uploads' directory exists
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+
+// Middleware
 app.use(cors());
+app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-mongoose.connect("mongodb+srv://admin:test@cluster0.xnvxp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", { useNewUrlParser: true, useUnifiedTopology: true });
+// Multer config for image upload
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, 'uploads/'),
+  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
+});
+const upload = multer({ storage });
 
+// Connect MongoDB
+mongoose
+  .connect('mongodb+srv://admin:test@cluster0.xnvxp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log('MongoDB connected'))
+  .catch((err) => console.error(err));
+
+// User Schema and Model
 const UserSchema = new mongoose.Schema({
     name: String,
     email: String,
@@ -43,15 +73,14 @@ app.post('/signup', async (req, res) => {
 // Login Route
 app.post('/login', async (req, res) => {
     try {
-        const { email, password } = req.body; // No need for 'name'
+        const { email, password } = req.body;
         const user = await User.findOne({ email });
 
         if (!user) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
 
-        // ✅ Await bcrypt.compare()
-        const isMatch = bcrypt.compare(password, user.password);
+        const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ message: 'Invalid credentials' });
         }
@@ -64,10 +93,57 @@ app.post('/login', async (req, res) => {
     }
 });
 
-
 // Test Route
 app.get('/', (req, res) => {
     res.send('Server is running');
 });
 
-app.listen(4000, () => console.log('Server running on port 4000'));
+// POST - Sell Property
+app.post('/api/sell', upload.single('imageFile'), async (req, res) => {
+  try {
+    const {
+      title,
+      location,
+      size,
+      price,
+      contactName,
+      contactEmail,
+      contactPhone,
+      description,
+    } = req.body;
+
+    const image = req.file ? `/uploads/${req.file.filename}` : '';
+
+    const newProperty = new Property({
+      title,
+      location,
+      size,
+      price,
+      contactName,
+      contactEmail,
+      contactPhone,
+      image,
+      description,
+    });
+
+    await newProperty.save();
+    res.status(201).json({ message: 'Property saved successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Failed to save property' });
+  }
+});
+
+// GET - Buy Property
+app.get('/api/buy', async (req, res) => {
+  try {
+    const properties = await Property.find();
+    res.json(properties);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch properties' });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});

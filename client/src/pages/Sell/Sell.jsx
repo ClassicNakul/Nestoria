@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
-import './Sell.css'; // Import the CSS file for styling
+import './Sell.css';
+import axios from 'axios';
 import image9 from '../../assets/9.jpg';
 import image7 from '../../assets/7.jpg';
 import image8 from '../../assets/8.jpg';
@@ -18,6 +19,7 @@ const Sell = () => {
     contactPhone: '',
     image: null,
     imageFile: null,
+    description: '',
   });
 
   const handleChange = (e) => {
@@ -30,11 +32,26 @@ const Sell = () => {
     setProperty({ ...property, image: URL.createObjectURL(file), imageFile: file });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Property Submitted:', property);
-    alert('Your property has been listed successfully!');
-    navigate('/buy', { state: { newProperty: property } });
+
+    const formData = new FormData();
+    for (let key in property) {
+      if (key !== 'image') {
+        formData.append(key, property[key]);
+      }
+    }
+
+    try {
+      await axios.post('http://localhost:4000/api/sell', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      alert('Your property has been listed successfully!');
+      navigate('/buy');
+    } catch (error) {
+      console.error(error);
+      alert('Failed to list property.');
+    }
   };
 
   return (
@@ -50,9 +67,9 @@ const Sell = () => {
           <div className="description-container">
             <h2 className="description-title">Why Sell With Us?</h2>
             <p className="description-content">
-              List your property with us and reach thousands of potential buyers. 
-              Our platform ensures maximum visibility for your property, helping you 
-              connect with serious buyers quickly and efficiently. Provide all the 
+              List your property with us and reach thousands of potential buyers.
+              Our platform ensures maximum visibility for your property, helping you
+              connect with serious buyers quickly and efficiently. Provide all the
               details and upload images to showcase your property effectively.
             </p>
           </div>
@@ -154,6 +171,22 @@ const Sell = () => {
                 />
               </div>
             </div>
+
+            {/* New Description Field */}
+            <div className="form-row">
+              <div className="form-group" style={{ width: '100%' }}>
+                <textarea
+                  name="description"
+                  value={property.description}
+                  onChange={handleChange}
+                  placeholder="Property Description"
+                  required
+                  className="form-input"
+                  rows={4}
+                />
+              </div>
+            </div>
+
             {property.image && (
               <div className="image-preview-container">
                 <img
@@ -163,6 +196,7 @@ const Sell = () => {
                 />
               </div>
             )}
+
             <button type="submit" className="submit-button">
               Submit
             </button>
