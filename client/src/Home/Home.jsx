@@ -8,9 +8,11 @@ const Home = () => {
     const [currentImage, setCurrentImage] = useState(0);
 
     const images = [
+        require("../assets/11.jpg"),
         require("../assets/1.jpg"),
         require("../assets/2.jpg"),
         require("../assets/7.jpg"),
+        require("../assets/10.jpg"),
     ];
 
     // Sample data for best properties
