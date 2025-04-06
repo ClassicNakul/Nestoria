@@ -117,7 +117,7 @@ const Home = () => {
                             <Link to="/rent" className="service-link">Explore</Link>
                         </div>
                         <div className="service-card">
-                            <h3>Rentee</h3>
+                            <h3>Renter</h3>
                             <p>List your property for rent.</p>
                             <Link to="/rentee" className="service-link">Explore</Link>
                         </div>
