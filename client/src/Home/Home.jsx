@@ -119,7 +119,7 @@ const Home = () => {
                         <div className="service-card">
                             <h3>Renter</h3>
                             <p>List your property for rent.</p>
-                            <Link to="/rentee" className="service-link">Explore</Link>
+                            <Link to="/renter" className="service-link">Explore</Link>
                         </div>
                     </div>
                 </div>

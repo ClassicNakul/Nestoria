@@ -63,8 +63,8 @@ const Navbar = () => {
           <ul className={`dropdown-menu ${isDropdownOpen ? "show-dropdown" : ""}`}>
             <li><Link to="/Buy">To Buy</Link></li>
             <li><Link to="/Sell">To Sell</Link></li>
-            <li><Link to="/services/rent">To Rent</Link></li>
-            <li><Link to="/services/renter">To Renter</Link></li>
+            <li><Link to="/Rent">To Rent</Link></li>
+            <li><Link to="/Renter">To Renter</Link></li>
           </ul>
         </li>
         <li><Link to="/contact">Contact Us</Link></li>

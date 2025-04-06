@@ -9,6 +9,8 @@ import Sign from './pages/Sign/Sign';
 import Contact from './pages/Contact/Contact';
 import Buy from './pages/Buy/Buy';
 import Sell from './pages/Sell/Sell';
+import Rent from './pages/Rent/Rent';
+import Renter from './pages/Renter/Renter';
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
                 <Route path='/Contact' element={<Contact />}/>
                 <Route path='/Buy' element={<Buy />}/>
                 <Route path='/Sell' element={<Sell />}/>
+                <Route path='/Rent' element={<Rent />}/>
+                <Route path='/Renter' element={<Renter />}/>
             </Routes>
         {/* <Footer />   */}
       </Router>
