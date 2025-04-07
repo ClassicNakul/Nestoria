@@ -108,7 +108,7 @@ const Buy = () => {
                 <p className="property-price">Price: {property.price}</p>
                 <p className="property-description">{property.description}</p>
                 <button
-                  className="submit-button"
+                  className="contact-button"
                   onClick={() => setSelectedContact(property)}
                 >
                   Contact
