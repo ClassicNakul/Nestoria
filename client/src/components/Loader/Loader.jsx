@@ -15,7 +15,7 @@ export default function RealEstateLoader() {
       </motion.div>
 
       <h1 className="text-2xl font-semibold tracking-wide loader-text">
-        Finding your perfect property...
+        -- Nestoria -- 
       </h1>
     </div>
   );
