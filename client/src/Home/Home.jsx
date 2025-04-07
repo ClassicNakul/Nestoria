@@ -3,6 +3,8 @@ import './Home.css';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Navbar/Navbar';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Home = () => {
     const [currentImage, setCurrentImage] = useState(0);
@@ -15,7 +17,6 @@ const Home = () => {
         require("../assets/10.jpg"),
     ];
 
-    // Sample data for best properties
     const bestProperties = [
         {
             id: 1,
@@ -69,6 +70,8 @@ const Home = () => {
     ];
 
     useEffect(() => {
+        AOS.init({ duration: 1000 });
+
         const interval = setInterval(() => {
             setCurrentImage((prevImage) => (prevImage + 1) % images.length);
         }, 3000);
@@ -128,8 +131,8 @@ const Home = () => {
                 <div className="best-properties-container">
                     <h2>Our Best Properties</h2>
                     <div className="properties-slider">
-                        {bestProperties.map((property) => (
-                            <div key={property.id} className="property-card">
+                        {[...bestProperties, ...bestProperties].map((property, index) => (
+                            <div key={index} className="property-card">
                                 <img src={property.image} alt={property.name} />
                                 <h3>{property.name}</h3>
                                 <div className="rating">
@@ -148,6 +151,56 @@ const Home = () => {
                         ))}
                     </div>
                 </div>
+
+                {/* Our Locations Section */}
+                {/* Our Locations Section */}
+                <div className="locations-container">
+                    <h2>Our Locations</h2>
+                    <div className="locations-grid">
+                        {[
+                            {
+                                id: 1,
+                                image: require("../assets/mumbai.jpg"),
+                                name: "Mumbai",
+                                description: "Luxury apartments and townhouses in the heart of the city."
+                            },
+                            {
+                                id: 2,
+                                image: require("../assets/pune.jpg"),
+                                name: "Pune",
+                                description: "Modern homes with scenic coastal views."
+                            },
+                            {
+                                id: 3,
+                                image: require("../assets/jaipur.jpg"),
+                                name: "Jaipur",
+                                description: "Spacious family homes in peaceful neighborhoods."
+                            },
+                            {
+                                id: 4,
+                                image: require("../assets/delhi.jpg"),
+                                name: "Delhi",
+                                description: "Beachfront properties with vibrant surroundings."
+                            },
+                            {
+                                id: 5,
+                                image: require("../assets/bangalore.jpg"),
+                                name: "Bangalore",
+                                description: "Elegant residences with tech-centric amenities."
+                            },
+                        ].map((loc) => (
+                            <div key={loc.id} className="location-wrapper" data-aos="zoom-in">
+                                <div className="location-card">
+                                    <img src={loc.image} alt={loc.name} className="location-img" />
+                                </div>
+                                <h3 className="location-name">{loc.name}</h3>
+                                <p className="location-description">{loc.description}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+
                 <Footer />
             </div>
         </div>
