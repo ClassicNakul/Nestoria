@@ -6,6 +6,7 @@ import axios from 'axios';
 import image9 from '../../assets/9.jpg';
 import image7 from '../../assets/7.jpg';
 import image8 from '../../assets/8.jpg';
+import sampleVideo from '../../assets/vid.mp4';
 
 const Sell = () => {
   const navigate = useNavigate();
@@ -72,6 +73,12 @@ const Sell = () => {
               connect with serious buyers quickly and efficiently. Provide all the
               details and upload images to showcase your property effectively.
             </p>
+            <div className="renter-video">
+              <video autoPlay muted loop playsInline width="100%" height="auto">
+                <source src={sampleVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
           </div>
         </div>
         <div className="right-section">

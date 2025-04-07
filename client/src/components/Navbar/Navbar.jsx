@@ -26,9 +26,8 @@ const Navbar = () => {
         setUser(parsedUser);
       }
     }
-  }, []);
-
-
+  },[]);
+  
   // Logout function
   const handleLogout = () => {
     localStorage.removeItem("token"); // Remove token from storage

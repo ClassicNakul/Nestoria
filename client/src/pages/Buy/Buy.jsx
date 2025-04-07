@@ -73,7 +73,7 @@ const Buy = () => {
             <option value="Delhi">Delhi</option>
             <option value="Mumbai">Mumbai</option>
             <option value="Ahemdabad">Ahemdabad</option>
-            <option value="Banglore">Banglore</option>
+            <option value="Bangalore">Bangalore</option>
           </select>
 
           <select name="price" value={filters.price} onChange={handleFilterChange}>
