@@ -143,7 +143,7 @@ body {
 
 /* Keyframe Animation for Infinite Scrolling */
 @keyframes slide {
-    0% { transform: translateX(50%); }
+    0% { transform: translateX(0); }
     100% { transform: translateX(-50%); } /* Moves only half so it loops seamlessly */
 }
 
