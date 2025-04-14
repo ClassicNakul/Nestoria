@@ -72,7 +72,6 @@ const Buy = () => {
             <option value="Jaipur">Jaipur</option>
             <option value="Delhi">Delhi</option>
             <option value="Mumbai">Mumbai</option>
-            <option value="Ahemdabad">Ahemdabad</option>
             <option value="Bangalore">Bangalore</option>
           </select>
 
