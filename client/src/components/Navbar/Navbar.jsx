@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes, FaAngleDown } from "react-icons/fa";
 import { jwtDecode } from "jwt-decode";
 import "./Navbar.css";
-import Avatar from "../Avatar/Avatar";
+// import Avatar from "../Avatar/Avatar";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -70,11 +70,11 @@ const Navbar = () => {
         <li>
           {user ? (
             <>
-              <Avatar>
+              {/* <Avatar>
                 <Link to={`/Users/${user?.userId || ""}`} style={{ color: "white", textDecoration: "none" }}>
                   {user?.name ? user.name.charAt(0).toUpperCase() : "N"}
                 </Link>
-              </Avatar>
+              </Avatar> */}
               <button className="nav-item nav-links logout-btn" onClick={handleLogout}>Sign Out</button>
             </>
           ) : (
